@@ -4,7 +4,7 @@
  */
 
 const apiHost = 'localhost:8080';
-const apiUrl = `http://${apiHost}/api`;
+const apiUrl = `http://${apiHost}/`;
 
 export const environment = {
   production: false,
@@ -13,8 +13,8 @@ export const environment = {
   apiHost,
   apiUrl,
   endpoints: {
-    Cliente : "cliente",
-    Poliza : "poliza",
+    Cliente : "clientes",
+    Poliza : "polizas",
     PolizaType : "polizatype",
     Login : "login",
   }
