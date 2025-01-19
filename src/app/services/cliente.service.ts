@@ -18,6 +18,11 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * GET Http
+   * @description Obtiene lista de clientes
+   * @returns Array de clientes
+   */
   getAllClientes(): Observable<Cliente[]> {
     return this.http.get<Cliente[]>(this.apiUrl);
   }

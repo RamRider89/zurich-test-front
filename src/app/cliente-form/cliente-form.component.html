@@ -1,1 +1,78 @@
-<p>cliente-form works!</p>
+<h2 mat-dialog-title>{{ cliente.id ? 'Editar Cliente' : 'Crear Cliente' }}</h2>
+<mat-dialog-content class="mat-typography form-clientes">
+
+    <form [formGroup]="clienteForm">
+    <div>
+
+        @if (cliente.id) {
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label>Número de cliente</mat-label>
+                    <input matInput placeholder="Id" disabled value="{{ cliente.id }}"/>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+            </p>
+        }
+
+        <p>
+            <mat-form-field class="full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Ej. Pedro" value="{{ cliente.name }}" formControlName="name" required restringirTexto [permitir]="'alfanumerico'" maxlength="255"/>
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-hint>Nombre completo</mat-hint>
+
+                @if (clienteForm.get('name')?.invalid) {
+                    <mat-error>{{errorMessage.name()}}</mat-error>
+                }
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field class="full-width">
+                <mat-label>Número de teléfono</mat-label>
+                <input matInput placeholder="Phone number" value="{{ cliente.phone }}" formControlName="phone" required restringirTexto [permitir]="'telefono'" maxlength="12"/>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint>Incluir código de area</mat-hint>
+                @if (clienteForm.get('phone')?.invalid) {
+                    <mat-error>{{errorMessage.phone()}}</mat-error>
+                }
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field class="full-width">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput placeholder="email@zurich.com" value="{{ cliente.email }}" formControlName="email" required restringirTexto [permitir]="'alfa'" maxlength="255"/>
+                <mat-icon matSuffix>email</mat-icon>
+                @if (clienteForm.get('email')?.invalid) {
+                    <mat-error>{{errorMessage.email()}}</mat-error>
+                }
+            </mat-form-field>
+        </p>
+
+        <p>
+            <mat-form-field class="full-width">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="Dirección" value="{{ cliente.address }}" formControlName="address" required restringirTexto [permitir]="'alfanumerico'" maxlength="255"/>
+                <mat-icon matSuffix>home</mat-icon>
+                <mat-hint>Dirección completa</mat-hint>
+                @if (clienteForm.get('address')?.invalid) {
+                    <mat-error>{{errorMessage.address()}}</mat-error>
+                }
+            </mat-form-field>
+        </p>
+
+        <p>
+
+        </p>
+
+
+
+    </div>
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="full-width">
+  <button mat-stroked-button mat-dialog-close>Cancelar</button>
+  <button mat-flat-button [mat-dialog-close]="true" [disabled]="!clienteForm.valid" (click)="guardarCliente()">Guardar</button>
+</mat-dialog-actions>
