@@ -1,0 +1,82 @@
+/* Structure */
+table {
+    width: 100%;
+}
+  
+.mat-mdc-form-field {
+    font-size: 14px;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid rgb(204, 204, 204);
+    cursor: pointer;
+  }
+  
+.mat-mdc-row:hover .mat-mdc-cell {
+    background: rgb(240, 246, 255);
+}
+
+tr.table-zurich-element-row:not(.table-zurich-expanded-row):active {
+    background: #efefef;
+}
+
+.card-spacer {
+    flex: 1 1 auto;
+}
+
+.contenedor {
+    padding: 0 40px;
+    height: 100%;
+    margin: 50px;
+    align-content: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+  
+.card-content {
+    box-shadow: 3px 3px 20px #2632381a;
+    min-width: 1000px;
+}
+
+.icon-heard-card {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+}
+
+.icon-blue {
+    color: #2167ae;
+    fill: #2167ae;
+}
+
+.filtros-form{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.actions-button-row {
+    display: table-cell;
+}
+
+.actions-button-row .mat-mdc-button-base {
+    margin: 8px 8px 8px 0;
+}
+
+.actions-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.actions-button-container {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+}

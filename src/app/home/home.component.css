@@ -112,6 +112,7 @@
       line-height: 1.4rem;
       letter-spacing: -0.00875rem;
       text-decoration: none;
+      cursor: pointer;
     }
   
     .pill:hover {
@@ -132,22 +133,6 @@
   
     .pill-group svg {
       margin-inline-start: 0.25rem;
-    }
-  
-    .social-links {
-      display: flex;
-      align-items: center;
-      gap: 0.73rem;
-      margin-top: 1.5rem;
-    }
-  
-    .social-links path {
-      transition: fill 0.3s ease;
-      fill: var(--gray-400);
-    }
-  
-    .social-links a:hover svg path {
-      fill: var(--gray-900);
     }
   
     @media screen and (max-width: 650px) {

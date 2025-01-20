@@ -51,11 +51,12 @@
         <div class="pill-group">
           @for (item of [
             { title: 'Clientes', link: './clientes' },
-            { title: 'Polizas', link: './polizas' }
+            { title: 'Polizas', link: './polizas' },
+            { title: 'Dashboard Clientes', link: './dashboard' }
           ]; track item.title) {
             <a
               class="pill"
-              [href]="item.link"
+              (click)="goRuta(item.link)"
               rel="noopener"
             >
               <span>{{ item.title }}</span>
