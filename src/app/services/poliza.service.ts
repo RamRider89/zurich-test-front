@@ -47,4 +47,16 @@ export class PolizaService {
     const url = environment.apiUrl + environment.endpoints.PolizaFiltrar;
     return this.http.get<Poliza[]>(url, { params });
   }
+
+  getPolizasByClienteId(id: number): Observable<Poliza[]> {
+    const url = `${environment.apiUrl + environment.endpoints.PolizaByCliente}/${id}`;
+    return this.http.get<Poliza[]>(url);
+  }
+
+  // ficticio
+  solicitarCancelacion(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}/cancelar`;
+    return this.http.post<string>(url, {}); // Devolver el folio como string
+  }
+  
 }
