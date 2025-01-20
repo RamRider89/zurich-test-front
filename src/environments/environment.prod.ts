@@ -3,7 +3,7 @@
  * Produccion
  */
 
-const apiHost = 'zurich-back.com';
+const apiHost = 'ec2-18-191-210-67.us-east-2.compute.amazonaws.com:8080';
 const apiUrl = `http://${apiHost}/`;
 
 export const environment = {
