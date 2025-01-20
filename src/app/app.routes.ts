@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ClienteListComponent } from './cliente-list/cliente-list.component';
-import { ClienteFormComponent } from './cliente-form/cliente-form.component';
+import { PolizaListComponent } from './poliza-list/poliza-list.component';
+
+import { PolizaFormComponent } from './poliza-form/poliza-form.component';
 
 export const routes: Routes = [
   { 
@@ -15,8 +17,8 @@ export const routes: Routes = [
   component: ClienteListComponent,
 },
 { 
-  path: 'new-cliente', 
-  data: { title: 'nuevo' },
-  component: ClienteFormComponent,
+  path: 'polizas', 
+  data: { title: 'polizas' },
+  component: PolizaListComponent,
 }
 ];

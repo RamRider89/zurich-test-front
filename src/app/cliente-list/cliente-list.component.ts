@@ -4,7 +4,6 @@
  */
 
 // Core
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild} from '@angular/core';
 // Servicios
 import { Cliente } from '@models/cliente';
@@ -13,18 +12,13 @@ import { RouterModule } from '@angular/router';
 // Modal Form
 import { ClienteFormComponent } from '@app/cliente-form/cliente-form.component';
 import { ConfirmacionDialogComponent } from '@app/confirmacion-dialog/confirmacion-dialog.component'
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 // Material
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '@shared/shared.module';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cliente-list',
@@ -32,29 +26,15 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
   styleUrls: ['./cliente-list.component.css'],
   standalone: true,
   imports: [
-    CommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatTableModule,
-    MatButtonModule,
-    RouterModule,
-    MatInputModule,
-    MatCardModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatSnackBarModule
+    SharedModule,
+    RouterModule
   ]
 })
 export class ClienteListComponent implements OnInit {
 
   clientes: Cliente[] = []; // Array para almacenar los clientes
   displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'address', 'actions']; // Columnas de la tabla
-  filterValue: string = ''; // Variable para almacenar el valor del filtro
   dataSource: any = new MatTableDataSource<Cliente>();
-
-  clickedRows: Cliente | undefined; 
-
-  public mainLogo: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -64,10 +44,8 @@ export class ClienteListComponent implements OnInit {
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) { 
-    this.mainLogo = 'assets/img/logo-blanco.png';
     this.paginator = new MatPaginator;
     this.sort = new MatSort;
-    
   }
 
   ngOnInit(): void {
@@ -75,15 +53,23 @@ export class ClienteListComponent implements OnInit {
     this.filterTable();
   }
 
+  /** init paginator y el sorter */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
+  /**
+   * Obtener todos los clientes
+   */
   getClientes(): void {
-    this.clienteService.getAllClientes().subscribe(clientes => this.dataSource.data = clientes); // Suscribirse al servicio
+    this.clienteService.getAllClientes().subscribe(clientes => this.dataSource.data = clientes);
   }
 
+  /**
+   * Filtrado en la tabla de clientes y actualizacion de la vista al usuaio
+   * @param event 
+   */
   filtrar(event: Event) {
     const filtro = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filtro.trim().toLowerCase();
@@ -93,18 +79,13 @@ export class ClienteListComponent implements OnInit {
     }
   }
 
-  /** custom */
+  /** Filtrado por columnas especificas */
   filterTable() {
     this.dataSource.filterPredicate = (data: Cliente, filter: string): boolean => {
       return (
         data.id.toString().trim().includes(String(filter)) || data.name.toLocaleLowerCase().includes(filter) || data.email.toLocaleLowerCase().includes(filter)
       )
     }
-  }
-
-  openModal(cliente: Cliente){
-    console.log(cliente);
-    
   }
 
   /**
@@ -142,7 +123,7 @@ export class ClienteListComponent implements OnInit {
     });
 
     /**
-     * Action
+     * Action despues del dialogo delete
      */
     dialogRef.afterClosed().subscribe(result => {
       if (result) { // Si el usuario confirma
