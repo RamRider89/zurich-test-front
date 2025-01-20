@@ -1,59 +1,93 @@
-# ZurichTestFront
+# Gestión de Seguros - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.2.
+Este proyecto es el frontend de la aplicación de gestión de seguros, desarrollado con Angular.
 
-## Development server
+## Requisitos
 
-To start a local development server, run:
+* Node.js y npm (o yarn) instalados.
 
-```bash
+## Instalación
+
+1. Clonar el repositorio:
+   git clone https://github.com/RamRider89/zurich-test-front.git
+   
+2. Instalar las dependencias:
+Bash
+cd gestion-seguros-frontend
+npm install
+
+3. Desarrollo
+Iniciar el servidor de desarrollo:
+Bash
+
 ng serve
-```
+Esto iniciará la aplicación en http://localhost:4200/.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Construir para producción
+1. Ejecutar el siguiente comando:
+Bash
+ng build --configuration production
+Esto generará los archivos de la aplicación en la carpeta dist/.
 
-## Code scaffolding
+Estructura del proyecto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+src/
+├── app/
+│   ├── cliente-list/
+│   │   ├── cliente-list.component.css
+│   │   ├── cliente-list.component.html
+│   │   └── cliente-list.component.ts
+│   ├── cliente-form/
+│   │   ├── cliente-form.component.css
+│   │   ├── cliente-form.component.html
+│   │   └── cliente-form.component.ts
+│   ├── cliente/
+│   │   ├── cliente.component.css
+│   │   ├── cliente.component.html
+│   │   └── cliente.component.ts
+│   ├── poliza-list/
+│   │   ├── poliza-list.component.css
+│   │   ├── poliza-list.component.html
+│   │   └── poliza-list.component.ts
+│   ├── poliza-form/
+│   │   ├── poliza-form.component.css
+│   │   ├── poliza-form.component.html
+│   │   └── poliza-form.component.ts
+│   ├── poliza/
+│   │   ├── poliza.component.css
+│   │   ├── poliza.component.html
+│   │   └── poliza.component.ts
+│   ├── dashboard/
+│   │   ├── dashboard.component.css
+│   │   ├── dashboard.component.html
+│   │   └── dashboard.component.ts
+│   ├── header/
+│   │   ├── header.component.css
+│   │   ├── header.component.html
+│   │   └── header.component.ts
+│   ├── login/
+│   │   ├── login.component.css
+│   │   ├── login.component.html
+│   │   └── login.component.ts
+│   ├── app.component.css
+│   ├── app.component.html
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   └── app.routes.ts
+├── environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
+├── main.ts
+├── polyfills.ts
+├── styles.css
+└── ...
 
-```bash
-ng generate component component-name
-```
+Tecnologías utilizadas
+- Angular
+- Angular Material
+- RxJS
+- TypeScript
+- Moment.js
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Autor
+david.duarte@davdav.tech
