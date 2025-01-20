@@ -34,6 +34,7 @@ export class ClienteFormComponent implements OnInit {
   cliente: Cliente = {} as Cliente; // Inicializa un cliente vacío
   clienteForm!: FormGroup; // Define el FormGroup
   errorMessage: any;
+  userDataEdit = signal(false); // identificar edicion de datos por parte del usuario
 
   constructor(
     private clienteService: ClienteService,
@@ -70,7 +71,12 @@ export class ClienteFormComponent implements OnInit {
     // se elije obtener los datos directamente del objeto
     this.cliente = this.data.cliente ? this.data.cliente : {} as Cliente;
     this.clienteForm.patchValue(this.cliente);
-    console.info(this.cliente);
+
+    if(this.data.userEdit){
+      this.clienteForm.controls['name'].disable();
+      this.clienteForm.controls['email'].disable();
+    }
+
   }
 
   /**

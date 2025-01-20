@@ -93,7 +93,7 @@ export class PolizaFormComponent implements OnInit {
     // se elije obtener los datos directamente del objeto
     this.poliza = this.data.poliza ? this.data.poliza : {} as Poliza;
 
-    if (this.poliza){      
+    if (this.poliza?.id){       
       this.poliza.clienteId = this.poliza.cliente?.id;
       this.poliza.status = Number(this.poliza?.status) + 0;
       // Ajustando el formato de fechas para el datepicker

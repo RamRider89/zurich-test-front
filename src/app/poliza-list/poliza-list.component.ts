@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 // Servicios
 import { Poliza } from '@models/poliza';
 import { PolizaType, PolizaStatus } from '@models/poliza-type';
@@ -7,7 +7,6 @@ import { PolizaTypeService } from '@services/poliza-type.service';
 import { RouterModule } from '@angular/router';
 // Modal Form
 import { PolizaFormComponent } from '@app/poliza-form/poliza-form.component';
-import { ConfirmacionDialogComponent } from '@app/confirmacion-dialog/confirmacion-dialog.component'
 // Material
 import { SharedModule } from '@shared/shared.module';
 import { MatTableDataSource } from '@angular/material/table';
@@ -77,7 +76,6 @@ export class PolizaListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPolizas();
     this.getPolizaTypes(); // Obtener los tipos de póliza al iniciar
   }
 
@@ -98,11 +96,8 @@ export class PolizaListComponent implements OnInit {
         tipoPolizaName: this.getPolizaTypeName(poliza.typePoliza), // nombre del tipo de póliza
         dateStart: moment(poliza.dateStart).format('YYYY-MM-DD'), // Formatear con Moment.js
         dateExpiration: moment(poliza.dateExpiration).format('YYYY-MM-DD')
-   
       }));
       this.dataSource.data = this.polizas;
-      console.log(this.dataSource.data);
-      
     });
   }
 
@@ -111,6 +106,7 @@ export class PolizaListComponent implements OnInit {
    */
   getPolizaTypes(): void {
     this.polizaTypeService.getAllPolizaTypes().subscribe(tipos => this.polizaTypes = tipos);
+    this.getPolizas();
   }
 
   /**
@@ -171,9 +167,7 @@ export class PolizaListComponent implements OnInit {
           dateExpiration: moment(poliza.dateExpiration).format('YYYY-MM-DD')
     
         }));
-        this.dataSource.data = this.polizas;
-        console.log(this.dataSource.data);
-        
+        this.dataSource.data = this.polizas;        
       });
   }
 

@@ -97,7 +97,8 @@ export class ClienteListComponent implements OnInit {
       height: 'auto',
       width: '800px',
       data: {
-        cliente: cliente
+        cliente: cliente,
+        userEdit: false
       },
     });
 

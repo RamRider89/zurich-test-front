@@ -1,29 +1,37 @@
 <mat-toolbar color="primary">
 
-    <a class="logo-zurich" href="/"></a>
+    <a class="logo-zurich" (click)="goHome()"></a>
 
     <span class="card-spacer"></span>
-    <button mat-icon-button class="person-icon" aria-label="Cliente">
+    <div>
+      <button mat-icon-button class="person-icon" aria-label="Cliente">
         <mat-icon>person</mat-icon>
-    </button>
-    <span>Administrador</span>
+      </button>
+      <span>{{ tipoUsuario() }}</span>
 
-    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
 
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="goClientes()">
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="mostrarMenu()">Menu</button> 
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="goClientes()" *ngIf="mostrarClientes()"> 
           <mat-icon>person</mat-icon>
           <span>Clientes</span>
         </button>
-        <button mat-menu-item (click)="goPolizas()">
+        <button mat-menu-item (click)="goPolizas()" *ngIf="mostrarPolizas()">
           <mat-icon>description</mat-icon>
           <span>Polizas</span>
         </button>
-        <button mat-menu-item (click)="goLogin()">
+        <button mat-menu-item (click)="goDash()" *ngIf="mostrarDashboard()">
+          <mat-icon>dashboard</mat-icon> 
+          <span>Dashboard</span>
+        </button>
+        <button mat-menu-item (click)="goLogin()" *ngIf="mostrarCerrarSesion()">
           <mat-icon>logout</mat-icon>
           <span>Cerrar Sesión</span>
         </button>
-    </mat-menu>
+      </mat-menu>
+
+
+    </div>
 
 </mat-toolbar>
   

@@ -7,9 +7,11 @@
                 <mat-card-title>Administración de clientes</mat-card-title>
                 <mat-card-subtitle>Listado</mat-card-subtitle>
                 <span class="card-spacer"></span>
-                <button mat-icon-button aria-label="Nuevo cliente" (click)="openNewClienteForm(null)" cdkFocusInitial>
-                    <mat-icon class="icon-blue">person_add</mat-icon>
-                  </button>
+                  <button mat-button aria-label="Nuevo cliente" (click)="openNewClienteForm(null)" cdkFocusInitial extended>
+                    <mat-icon>person_add</mat-icon>
+                    Nuevo cliente
+                </button>
+
             </mat-card-header>
 
             <mat-card-content>
