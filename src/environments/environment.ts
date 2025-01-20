@@ -15,7 +15,8 @@ export const environment = {
   endpoints: {
     Cliente : "clientes",
     Poliza : "polizas",
-    PolizaType : "polizatype",
+    PolizaFiltrar : "polizas/filtrar",
+    PolizaType : "poliza-types",
     Login : "login",
   }
 };

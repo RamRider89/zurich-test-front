@@ -1,1 +1,106 @@
-<p>poliza-form works!</p>
+<h2 mat-dialog-title>{{ poliza.id ? 'Editar Poliza' : 'Crear Poliza' }}</h2>
+<mat-dialog-content class="mat-typography form-clientes">
+
+    <form [formGroup]="polizaForm">
+    <div>
+
+            @if (poliza.id) {
+                <p>
+                    <mat-form-field class="full-width">
+                        <mat-label>Número de poliza</mat-label>
+                        <input matInput placeholder="Id" disabled value="{{ poliza.id }}"/>
+                        <mat-icon matSuffix>doc</mat-icon>
+                    </mat-form-field>
+                </p>
+            }
+ 
+            <p>
+                <!-- cliente poliza -->
+                <mat-form-field class="full-width">
+                    <mat-label>Cliente</mat-label>
+                    <mat-select name="clientPoliza" formControlName="clienteId">
+                    @for (cliente of clientes; track cliente) {
+                        <mat-option [value]="cliente.id">{{cliente.name}}</mat-option>
+                    }
+                    </mat-select>
+    
+                    @if (polizaForm.get('cliente')?.invalid) {
+                        <mat-error>{{errorMessage.cliente()}}</mat-error>
+                    }
+                </mat-form-field>
+            </p>
+
+            <p>
+                <!-- tipo poliza -->
+                <mat-form-field class="full-width">
+                    <mat-label>Tipo de Póliza</mat-label>
+                    <mat-select name="typePoliza" formControlName="typePoliza">
+                    @for (tipo of tiposPoliza; track tipo) {
+                        <mat-option [value]="tipo.id">{{tipo.name}}</mat-option>
+                    }
+                    </mat-select>
+    
+                    @if (polizaForm.get('typePoliza')?.invalid) {
+                        <mat-error>{{errorMessage.typePoliza()}}</mat-error>
+                    }
+                </mat-form-field>
+            </p>
+
+            <p>
+                <!-- poliza status -->
+                <mat-form-field class="full-width">
+                    <mat-label>Estatus de Póliza</mat-label>
+                    <mat-select name="status" formControlName="status">
+                    @for (est of statusPolis; track est) {
+                        <mat-option [value]="est.value">{{est.name}}</mat-option>
+                    }
+                    </mat-select>
+    
+                    @if (polizaForm.get('status')?.invalid) {
+                        <mat-error>{{errorMessage.status()}}</mat-error>
+                    }
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field class="full-width">
+                    <mat-label>Rango de fechas</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                      <input matStartDate formControlName="dateStart" placeholder="Fecha de inicio">
+                      <input matEndDate formControlName="dateExpiration" placeholder="Fecha expiración">
+                    </mat-date-range-input>
+                    <mat-hint>mm/dd/yyyy – mm/dd/yyyy</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                  
+                    @if (polizaForm.get('dateStart')?.hasError('matStartDateInvalid')) {
+                      <mat-error>Fecha de inicio invalida</mat-error>
+                    }
+                    @if (polizaForm.get('dateExpiration')?.hasError('matEndDateInvalid')) {
+                      <mat-error>Fecha final invalida</mat-error>
+                    }
+                  </mat-form-field>
+            </p>
+
+            <p>
+                <!-- monto -->
+                <mat-form-field floatLabel="always" class="full-width">
+                    <mat-label>Monto</mat-label>
+                    <input matInput type="number"  placeholder="0" formControlName="monto" min="0" max="999999999"/>
+                    <span matTextPrefix>$&nbsp;</span>
+                    <mat-hint>total</mat-hint>
+                    @if (polizaForm.get('monto')?.invalid) {
+                        <mat-error>{{errorMessage.monto()}}</mat-error>
+                    }
+                </mat-form-field>
+            </p>
+
+
+    </div>   
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="full-width">
+  <button mat-stroked-button mat-dialog-close>Cancelar</button>
+  <button mat-flat-button [mat-dialog-close]="true" [disabled]="!polizaForm.valid" (click)="guardarPoliza()">Guardar</button>
+</mat-dialog-actions>

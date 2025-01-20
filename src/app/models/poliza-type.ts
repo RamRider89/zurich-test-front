@@ -6,4 +6,9 @@
 export interface PolizaType {
     id: number;
     name: string;
-  }
+}
+
+export interface PolizaStatus {
+  value: number;
+  name: string;
+}

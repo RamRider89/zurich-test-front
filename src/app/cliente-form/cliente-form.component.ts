@@ -1,22 +1,18 @@
 // Core
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
 // Servicios
 import { Cliente } from '@models/cliente';
 import { ClienteService } from '@services/cliente.service';
 // Material
-import {MatButtonModule} from '@angular/material/button';
+import { SharedModule } from '@shared/shared.module';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 // Directives
 import { ChangeTextDirective } from '@directives/restringir-text.directive.';
 import {merge} from 'rxjs';
 // Modal
 import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cliente-form',
@@ -24,18 +20,11 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./cliente-form.component.css'],
   standalone: true,
   imports: [
-        CommonModule,
-        MatButtonModule, 
-        MatFormFieldModule, 
-        MatInputModule, 
-        MatIconModule,
-        FormsModule, 
-        ReactiveFormsModule,
+        SharedModule,
         ChangeTextDirective,
         MatDialogModule, 
         MatDialogTitle, 
-        MatDialogContent,
-        MatSnackBarModule
+        MatDialogContent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -82,9 +71,11 @@ export class ClienteFormComponent implements OnInit {
     this.cliente = this.data.cliente ? this.data.cliente : {} as Cliente;
     this.clienteForm.patchValue(this.cliente);
     console.info(this.cliente);
-    
   }
 
+  /**
+   * Guarda y actualiza
+   */
   guardarCliente() {
     if (this.clienteForm.valid) {
       // Guarda o actualiza el cliente

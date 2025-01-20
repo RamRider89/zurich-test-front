@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+
+    <a class="logo-zurich" href="/"></a>
+
+    <span class="card-spacer"></span>
+    <button mat-icon-button class="person-icon" aria-label="Cliente">
+        <mat-icon>person</mat-icon>
+    </button>
+    <span>Administrador</span>
+
+    <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="goClientes()">
+          <mat-icon>person</mat-icon>
+          <span>Clientes</span>
+        </button>
+        <button mat-menu-item (click)="goPolizas()">
+          <mat-icon>description</mat-icon>
+          <span>Polizas</span>
+        </button>
+        <button mat-menu-item (click)="goLogin()">
+          <mat-icon>logout</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+    </mat-menu>
+
+</mat-toolbar>
+  

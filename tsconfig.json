@@ -23,7 +23,8 @@
       "@env/*": ["./src/environments/*"],
       "@models/*": ["./src/app/models/*"],
       "@services/*": ["./src/app/services/*"],
-      "@directives/*": ["./src/app/directives/*"]
+      "@directives/*": ["./src/app/directives/*"],
+      "@shared/*": ["./src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {

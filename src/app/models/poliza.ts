@@ -7,10 +7,13 @@ import { Cliente } from './cliente'; // Importa la interfaz Cliente
 
 export interface Poliza {
   id: number;
-  cliente: Cliente;  // Objeto Cliente asociado a la póliza
+  clienteId: number | null;
+  cliente: Cliente;
   typePoliza: number;
-  dateStart: string; // Puedes usar Date si lo prefieres
-  dateExpiration: string; // Puedes usar Date si lo prefieres
+  tipoPolizaName: string | null; // opcional
+  dateStart: Date | string;
+  dateExpiration: Date | string;
   monto: number;
-  status: boolean;
+  status: boolean | number;
+  statusName: string | null; // opcional
 }
