@@ -16,6 +16,7 @@ export const environment = {
     Cliente : "clientes",
     Poliza : "polizas",
     PolizaFiltrar : "polizas/filtrar",
+    PolizaByCliente : "polizas/cliente",
     PolizaType : "poliza-types",
     Login : "login",
   }
